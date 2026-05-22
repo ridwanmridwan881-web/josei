@@ -14,6 +14,10 @@
       font-family:Arial, sans-serif;
     }
 
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       background:#f6efec;
       color:#8d6b6b;
@@ -23,13 +27,6 @@
       text-align:center;
       padding:40px 20px;
       background:#f3e7e4;
-    }
-
-    /* LOGO */
-    header img{
-      width:220px;
-      margin-bottom:20px;
-      border-radius:20px;
     }
 
     header h1{
@@ -48,6 +45,8 @@
       background:#d8b8b8;
       padding:15px;
       text-align:center;
+      position:sticky;
+      top:0;
     }
 
     nav a{
@@ -65,6 +64,12 @@
     .hero{
       text-align:center;
       padding:70px 20px;
+    }
+
+    .hero img{
+      width:160px;
+      margin-bottom:20px;
+      border-radius:20px;
     }
 
     .hero h2{
@@ -216,42 +221,44 @@
 
   </style>
 </head>
+
 <body>
 
   <!-- HEADER -->
   <header>
-
-    <!-- LOGO -->
-    <img src="image(2).png" alt="Logo JOSEI">
-
     <h1>JOSEI</h1>
     <p>Elegance In Every Detail</p>
-
   </header>
 
   <!-- MENU -->
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Collection</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#collection">Collection</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h2>Blouse Wanita Elegan & Modern</h2>
+  <!-- HOME -->
+  <section class="hero" id="home">
+
+    <img src="image(2).png" alt="Logo JOSEI">
+
+    <h2>Selamat Datang di JOSEI</h2>
 
     <p>
-      Temukan koleksi blouse wanita dengan desain feminin,
-      warna lembut, dan kualitas premium yang membuat
-      penampilan semakin anggun dan percaya diri.
+      JOSEI adalah toko fashion wanita yang menghadirkan
+      blouse elegan dengan warna soft feminine dan desain modern.
+      Cocok untuk daily outfit, kantor, hangout, hingga acara spesial.
     </p>
 
-    <button>Lihat Koleksi</button>
+    <button onclick="document.getElementById('collection').scrollIntoView();">
+      Belanja Sekarang
+    </button>
+
   </section>
 
   <!-- PRODUK -->
-  <section class="produk">
+  <section class="produk" id="collection">
 
     <div class="card">
       <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b" alt="Blouse">
@@ -288,8 +295,8 @@
 
   </section>
 
-  <!-- TENTANG -->
-  <section class="tentang">
+  <!-- ABOUT -->
+  <section class="tentang" id="about">
 
     <h2>Tentang JOSEI</h2>
 
@@ -302,12 +309,13 @@
 
   </section>
 
-  <!-- KONTAK -->
-  <section class="kontak">
+  <!-- CONTACT -->
+  <section class="kontak" id="contact">
 
     <h2>Hubungi Kami</h2>
 
-    <p>WhatsApp : 0858-91508250</p>
+    <p>WhatsApp : 0812-3456-7890</p>
+
     <br>
 
     <a href="https://wa.me/6281234567890" target="_blank">
