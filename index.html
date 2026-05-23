@@ -47,6 +47,7 @@
       text-align:center;
       position:sticky;
       top:0;
+      z-index:100;
     }
 
     nav a{
@@ -87,18 +88,6 @@
 
     .hero button{
       margin-top:25px;
-      background:#c89b9b;
-      color:white;
-      border:none;
-      padding:14px 28px;
-      border-radius:30px;
-      cursor:pointer;
-      font-size:16px;
-      transition:0.3s;
-    }
-
-    .hero button:hover{
-      background:#b27d7d;
     }
 
     .produk{
@@ -203,6 +192,62 @@
       margin-top:40px;
     }
 
+    /* CART */
+
+    .cart-icon{
+      position:fixed;
+      top:20px;
+      right:20px;
+      background:#c98c8c;
+      color:white;
+      padding:12px 18px;
+      border-radius:30px;
+      cursor:pointer;
+      z-index:1000;
+      font-weight:bold;
+    }
+
+    .cart{
+      position:fixed;
+      right:-400px;
+      top:0;
+      width:350px;
+      height:100%;
+      background:white;
+      box-shadow:-5px 0 20px rgba(0,0,0,0.2);
+      padding:20px;
+      transition:0.4s;
+      overflow-y:auto;
+      z-index:999;
+    }
+
+    .cart.active{
+      right:0;
+    }
+
+    .cart h2{
+      margin-bottom:20px;
+      color:#b27d7d;
+    }
+
+    .cart-item{
+      border-bottom:1px solid #ddd;
+      padding:10px 0;
+    }
+
+    .cart-item h4{
+      color:#8d6b6b;
+    }
+
+    .cart-item p{
+      color:#c98c8c;
+    }
+
+    #total{
+      margin-top:20px;
+      color:#b27d7d;
+    }
+
     @media(max-width:768px){
 
       header h1{
@@ -217,12 +262,36 @@
         flex-direction:column;
         align-items:center;
       }
+
+      .cart{
+        width:100%;
+      }
     }
 
   </style>
 </head>
 
 <body>
+
+  <!-- CART ICON -->
+  <div class="cart-icon" onclick="toggleCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+
+  <!-- CART -->
+  <div class="cart" id="cart">
+
+    <h2>Keranjang</h2>
+
+    <div id="cart-items"></div>
+
+    <h3 id="total">Total: Rp 0</h3>
+
+    <br>
+
+    <button onclick="checkoutWA()">Checkout WhatsApp</button>
+
+  </div>
 
   <!-- HEADER -->
   <header>
@@ -240,11 +309,8 @@
 
   <!-- HOME -->
   <section class="hero" id="home">
-    
-  <nav>
-    <img src="logo.png.jpeg"
-  alt="logo" width="120">
-  </nav>
+
+    <img src="logo.png.jpeg" alt="Logo JOSEI">
 
     <h2>Selamat Datang di JOSEI</h2>
 
@@ -270,7 +336,11 @@
         <h3>Soft Pink Blouse</h3>
         <p>Blouse wanita elegan bahan premium.</p>
         <div class="harga">Rp 189.000</div>
-        <button>Beli Sekarang</button>
+
+        <button onclick="tambahKeranjang('Soft Pink Blouse',189000)">
+          Beli Sekarang
+        </button>
+
       </div>
     </div>
 
@@ -281,7 +351,11 @@
         <h3>Rose Beige Style</h3>
         <p>Desain modern cocok untuk daily outfit.</p>
         <div class="harga">Rp 219.000</div>
-        <button>Beli Sekarang</button>
+
+        <button onclick="tambahKeranjang('Rose Beige Style',219000)">
+          Beli Sekarang
+        </button>
+
       </div>
     </div>
 
@@ -292,7 +366,11 @@
         <h3>Elegant Korean Blouse</h3>
         <p>Tampilan classy dengan warna soft.</p>
         <div class="harga">Rp 249.000</div>
-        <button>Beli Sekarang</button>
+
+        <button onclick="tambahKeranjang('Elegant Korean Blouse',249000)">
+          Beli Sekarang
+        </button>
+
       </div>
     </div>
 
@@ -332,5 +410,82 @@
     <p>© 2026 JOSEI Blouse Collection</p>
   </footer>
 
+  <!-- JAVASCRIPT -->
+  <script>
+
+    let keranjang = [];
+
+    function tambahKeranjang(nama, harga){
+
+      keranjang.push({
+        nama,
+        harga
+      });
+
+      updateCart();
+
+      alert(nama + " berhasil masuk keranjang");
+    }
+
+    function updateCart(){
+
+      const cartItems = document.getElementById("cart-items");
+
+      const cartCount = document.getElementById("cart-count");
+
+      const total = document.getElementById("total");
+
+      cartItems.innerHTML = "";
+
+      let totalHarga = 0;
+
+      keranjang.forEach(item => {
+
+        totalHarga += item.harga;
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <h4>${item.nama}</h4>
+            <p>Rp ${item.harga.toLocaleString()}</p>
+          </div>
+        `;
+      });
+
+      cartCount.innerText = keranjang.length;
+
+      total.innerText = "Total: Rp " + totalHarga.toLocaleString();
+    }
+
+    function toggleCart(){
+
+      document.getElementById("cart").classList.toggle("active");
+    }
+
+    function checkoutWA(){
+
+      if(keranjang.length == 0){
+        alert("Keranjang masih kosong");
+        return;
+      }
+
+      let pesan = "Halo JOSEI,%0A Saya ingin membeli:%0A";
+
+      let total = 0;
+
+      keranjang.forEach(item => {
+
+        pesan += "- " + item.nama + " Rp " + item.harga.toLocaleString() + "%0A";
+
+        total += item.harga;
+      });
+
+      pesan += "%0ATotal: Rp " + total.toLocaleString();
+
+      window.open("https://wa.me/62895326652857?text=" + pesan);
+    }
+
+  </script>
+
 </body>
+</html>
 </html>
