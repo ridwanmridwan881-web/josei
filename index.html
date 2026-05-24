@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JOSEI Blouse Collection</title>
 
   <style>
-    
+
     *{
       margin:0;
       padding:0;
@@ -22,6 +22,8 @@
       background:#f6efec;
       color:#8d6b6b;
     }
+
+    /* HEADER */
 
     header{
       text-align:center;
@@ -40,6 +42,8 @@
       color:#9f7c7c;
       font-size:18px;
     }
+
+    /* NAVBAR */
 
     nav{
       background:#d8b8b8;
@@ -62,6 +66,8 @@
       color:#fff0f0;
     }
 
+    /* HERO */
+
     .hero{
       text-align:center;
       padding:70px 20px;
@@ -83,12 +89,25 @@
       max-width:700px;
       margin:auto;
       line-height:1.8;
-      color:#8d6b6b;
     }
 
-    .hero button{
-      margin-top:25px;
+    /* BUTTON */
+
+    button{
+      background:#d6a5a5;
+      color:white;
+      border:none;
+      padding:12px 20px;
+      border-radius:25px;
+      cursor:pointer;
+      transition:0.3s;
     }
+
+    button:hover{
+      background:#b98585;
+    }
+
+    /* PRODUK */
 
     .produk{
       display:flex;
@@ -128,8 +147,8 @@
     }
 
     .card p{
-      color:#8d6b6b;
       margin-bottom:10px;
+      line-height:1.6;
     }
 
     .harga{
@@ -139,19 +158,15 @@
       margin-bottom:15px;
     }
 
-    button{
-      background:#d6a5a5;
-      color:white;
-      border:none;
-      padding:12px 20px;
-      border-radius:25px;
-      cursor:pointer;
-      transition:0.3s;
+    .size-select{
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid #d8b8b8;
+      color:#8d6b6b;
     }
 
-    button:hover{
-      background:#b98585;
-    }
+    /* ABOUT */
 
     .tentang{
       padding:60px 20px;
@@ -170,6 +185,8 @@
       line-height:1.8;
     }
 
+    /* CONTACT */
+
     .kontak{
       text-align:center;
       padding:60px 20px;
@@ -183,6 +200,8 @@
     .kontak a{
       text-decoration:none;
     }
+
+    /* FOOTER */
 
     footer{
       background:#d8b8b8;
@@ -248,6 +267,8 @@
       color:#b27d7d;
     }
 
+    /* RESPONSIVE */
+
     @media(max-width:768px){
 
       header h1{
@@ -274,11 +295,13 @@
 <body>
 
   <!-- CART ICON -->
+
   <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
   </div>
 
   <!-- CART -->
+
   <div class="cart" id="cart">
 
     <h2>Keranjang</h2>
@@ -289,17 +312,21 @@
 
     <br>
 
-    <button onclick="checkoutWA()">Checkout WhatsApp</button>
+    <button onclick="checkoutWA()">
+      Checkout WhatsApp
+    </button>
 
   </div>
 
   <!-- HEADER -->
+
   <header>
     <h1>JOSEI</h1>
     <p>Elegance In Every Detail</p>
   </header>
 
-  <!-- MENU -->
+  <!-- NAVBAR -->
+
   <nav>
     <a href="#home">Home</a>
     <a href="#collection">Collection</a>
@@ -307,7 +334,8 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- HOME -->
+  <!-- HERO -->
+
   <section class="hero" id="home">
 
     <img src="logo.png.jpeg" alt="Logo JOSEI">
@@ -315,10 +343,14 @@
     <h2>Selamat Datang di JOSEI</h2>
 
     <p>
-      JOSEI adalah toko fashion wanita yang menghadirkan 
-      blouse elegan import dari Jepang dengan warna soft feminine dan desain modern. 
-      Cocok untuk daily outfit, kantor, hangout, hingga acara spesial.
+      JOSEI adalah toko fashion wanita yang menghadirkan
+      blouse elegan import dari Jepang dengan warna soft feminine
+      dan desain modern.
+      Cocok untuk daily outfit, kantor, hangout,
+      hingga acara spesial.
     </p>
+
+    <br>
 
     <button onclick="document.getElementById('collection').scrollIntoView();">
       Belanja Sekarang
@@ -327,92 +359,207 @@
   </section>
 
   <!-- PRODUK -->
+
   <section class="produk" id="collection">
 
+    <!-- PRODUK 1 -->
+
     <div class="card">
-      <img src="blouse.png.jpeg" alt="Blouse">
+
+      <img src="blouse.png.jpeg" alt="Florence Floral Blouse">
 
       <div class="card-content">
+
         <h3>Florence Floral Blouse</h3>
-        <p>Motif floral Lembut dengan cutting relaxed fit yang nyaman dipakai sepanjang hari tanpa mengurangi kesan anggun.</p>
+
+        <p>
+          Motif floral lembut dengan cutting relaxed fit
+          yang nyaman dipakai sepanjang hari tanpa
+          mengurangi kesan anggun.
+        </p>
+
         <div class="harga">Rp 150.000</div>
 
-        <button onclick="tambahKeranjang('Soft Pink Blouse',189000)">
+        <select id="ukuran1" class="size-select">
+          <option value="S">Size S</option>
+          <option value="M">Size M</option>
+          <option value="L">Size L</option>
+          <option value="XL">Size XL</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="tambahKeranjang('Florence Floral Blouse',150000,document.getElementById('ukuran1').value)">
           Beli Sekarang
         </button>
 
       </div>
     </div>
 
-      <div class="card">
-      <img src="blouse1.png.jpeg" alt="Blouse">
+    <!-- PRODUK 2 -->
+
+    <div class="card">
+
+      <img src="blouse1.png.jpeg" alt="Rose Striped Blouse">
 
       <div class="card-content">
+
         <h3>Rose Striped Blouse</h3>
-        <p>Blouse soft pink Dengan detail pita manis, motif garis lembut dan desain feminin yang cocok untuk daily outfit maupun casual look.</p>
+
+        <p>
+          Blouse soft pink dengan detail pita manis,
+          motif garis lembut dan desain feminin
+          untuk daily outfit maupun casual look.
+        </p>
+
         <div class="harga">Rp 165.000</div>
 
-        <button onclick="tambahKeranjang('Soft Pink Blouse',189000)">
+        <select id="ukuran2" class="size-select">
+          <option value="S">Size S</option>
+          <option value="M">Size M</option>
+          <option value="L">Size L</option>
+          <option value="XL">Size XL</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="tambahKeranjang('Rose Striped Blouse',165000,document.getElementById('ukuran2').value)">
           Beli Sekarang
         </button>
 
       </div>
     </div>
 
+    <!-- PRODUK 3 -->
+
     <div class="card">
-      <img src="blouse2.png.jpeg" alt="Blouse">
+
+      <img src="blouse2.png.jpeg" alt="Ivory Formal Blouse">
 
       <div class="card-content">
+
         <h3>Ivory Formal Blouse</h3>
-        <p>Blouse elegan dengan detail kontras hitam-putih dan aksen pearl button yang memberikan tampilan classy dan modern.</p>
+
+        <p>
+          Blouse elegan dengan detail kontras hitam-putih
+          dan aksen pearl button yang memberikan
+          tampilan classy dan modern.
+        </p>
+
         <div class="harga">Rp 219.000</div>
 
-        <button onclick="tambahKeranjang('Rose Beige Style',219000)">
+        <select id="ukuran3" class="size-select">
+          <option value="S">Size S</option>
+          <option value="M">Size M</option>
+          <option value="L">Size L</option>
+          <option value="XL">Size XL</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="tambahKeranjang('Ivory Formal Blouse',219000,document.getElementById('ukuran3').value)">
           Beli Sekarang
         </button>
 
       </div>
     </div>
 
+    <!-- PRODUK 4 -->
+
     <div class="card">
-      <img src="blouse3.png.jpeg" alt="Blouse">
+
+      <img src="blouse3.png.jpeg" alt="Ivory Ribbon Blouse">
 
       <div class="card-content">
+
         <h3>Ivory Ribbon Blouse</h3>
-        <p>Detail ribbon pada bagian leher memberikan sentuhan manis dan classy, cocok dipadukan dengan skirt maupun celana high waist.</p>
+
+        <p>
+          Detail ribbon pada bagian leher memberikan
+          sentuhan manis dan classy, cocok dipadukan
+          dengan skirt maupun celana high waist.
+        </p>
+
         <div class="harga">Rp 150.000</div>
 
-        <button onclick="tambahKeranjang('Elegant Korean Blouse',249000)">
+        <select id="ukuran4" class="size-select">
+          <option value="S">Size S</option>
+          <option value="M">Size M</option>
+          <option value="L">Size L</option>
+          <option value="XL">Size XL</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="tambahKeranjang('Ivory Ribbon Blouse',150000,document.getElementById('ukuran4').value)">
           Beli Sekarang
         </button>
 
       </div>
     </div>
 
-        <div class="card">
-      <img src="blouse4.png.jpeg" alt="Blouse">
-
-      <div class="card-content">
-        <h3>Celestia Peplum Blouse</h3>
-        <p>Perpaduan sempurna antara formal dan feminine. Blouse putih dengan detail subtle stripe, kerah klasik, dan cutting peplum yang membuat penampilan terlihat lebih sophisticated tanpa berlebihan.</p>
-        <div class="harga">Rp 190.000</div>
-
-        <button onclick="tambahKeranjang('Elegant Korean Blouse',249000)">
-          Beli Sekarang
-        </button>
-
-      </div>
-    </div>
+    <!-- PRODUK 5 -->
 
     <div class="card">
-      <img src="blouse5.png.jpeg" alt="Blouse">
+
+      <img src="blouse4.png.jpeg" alt="Celestia Peplum Blouse">
 
       <div class="card-content">
+
+        <h3>Celestia Peplum Blouse</h3>
+
+        <p>
+          Perpaduan formal dan feminine dengan detail
+          subtle stripe, kerah klasik, dan cutting peplum
+          yang membuat tampilan lebih sophisticated.
+        </p>
+
+        <div class="harga">Rp 190.000</div>
+
+        <select id="ukuran5" class="size-select">
+          <option value="S">Size S</option>
+          <option value="M">Size M</option>
+          <option value="L">Size L</option>
+          <option value="XL">Size XL</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="tambahKeranjang('Celestia Peplum Blouse',190000,document.getElementById('ukuran5').value)">
+          Beli Sekarang
+        </button>
+
+      </div>
+    </div>
+
+    <!-- PRODUK 6 -->
+
+    <div class="card">
+
+      <img src="blouse5.png.jpeg" alt="Japanese Wrap Style Blouse">
+
+      <div class="card-content">
+
         <h3>Japanese Wrap Style Blouse</h3>
-        <p>Blouse wanita dengan detail tali samping dan lengan flare elegan. Memberikan tampilan feminine, classy, dan nyaman dipakai untuk formal maupun daily outfit.</p>
+
+        <p>
+          Blouse wanita dengan detail tali samping
+          dan lengan flare elegan. Memberikan tampilan
+          feminine, classy, dan nyaman dipakai.
+        </p>
+
         <div class="harga">Rp 195.000</div>
 
-        <button onclick="tambahKeranjang('Elegant Korean Blouse',249000)">
+        <select id="ukuran6" class="size-select">
+          <option value="S">Size S</option>
+          <option value="M">Size M</option>
+          <option value="L">Size L</option>
+          <option value="XL">Size XL</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="tambahKeranjang('Japanese Wrap Style Blouse',195000,document.getElementById('ukuran6').value)">
           Beli Sekarang
         </button>
 
@@ -422,20 +569,23 @@
   </section>
 
   <!-- ABOUT -->
+
   <section class="tentang" id="about">
 
     <h2>Tentang JOSEI</h2>
 
     <p>
-      JOSEI hadir untuk menghadirkan fashion wanita import dari 
-      Jepang yang anggun, modern, dan nyaman dipakai sehari-hari. 
-      Dengan sentuhan warna soft feminine dan desain elegan, 
+      JOSEI hadir untuk menghadirkan fashion wanita import
+      dari Jepang yang anggun, modern, dan nyaman dipakai
+      sehari-hari.
+      Dengan sentuhan warna soft feminine dan desain elegan,
       kami percaya setiap wanita memiliki pesonanya sendiri.
     </p>
 
   </section>
 
   <!-- CONTACT -->
+
   <section class="kontak" id="contact">
 
     <h2>Hubungi Kami</h2>
@@ -451,20 +601,23 @@
   </section>
 
   <!-- FOOTER -->
+
   <footer>
     <p>© 2026 JOSEI Blouse Collection</p>
   </footer>
 
   <!-- JAVASCRIPT -->
+
   <script>
 
     let keranjang = [];
 
-    function tambahKeranjang(nama, harga){
+    function tambahKeranjang(nama, harga, ukuran){
 
       keranjang.push({
         nama,
-        harga
+        harga,
+        ukuran
       });
 
       updateCart();
@@ -475,9 +628,7 @@
     function updateCart(){
 
       const cartItems = document.getElementById("cart-items");
-
       const cartCount = document.getElementById("cart-count");
-
       const total = document.getElementById("total");
 
       cartItems.innerHTML = "";
@@ -491,6 +642,7 @@
         cartItems.innerHTML += `
           <div class="cart-item">
             <h4>${item.nama}</h4>
+            <p>Ukuran: ${item.ukuran}</p>
             <p>Rp ${item.harga.toLocaleString()}</p>
           </div>
         `;
@@ -498,39 +650,50 @@
 
       cartCount.innerText = keranjang.length;
 
-      total.innerText = "Total: Rp " + totalHarga.toLocaleString();
+      total.innerText =
+        "Total: Rp " + totalHarga.toLocaleString();
     }
 
     function toggleCart(){
 
-      document.getElementById("cart").classList.toggle("active");
+      document
+        .getElementById("cart")
+        .classList.toggle("active");
     }
 
     function checkoutWA(){
 
       if(keranjang.length == 0){
+
         alert("Keranjang masih kosong");
         return;
       }
 
-      let pesan = "Halo JOSEI,%0A Saya ingin membeli:%0A";
+      let pesan =
+        "Halo JOSEI,%0A Saya ingin membeli:%0A";
 
       let total = 0;
 
       keranjang.forEach(item => {
 
-        pesan += "- " + item.nama + " Rp " + item.harga.toLocaleString() + "%0A";
+        pesan +=
+          "- " + item.nama +
+          " | Size: " + item.ukuran +
+          " | Rp " + item.harga.toLocaleString() +
+          "%0A";
 
         total += item.harga;
       });
 
-      pesan += "%0ATotal: Rp " + total.toLocaleString();
+      pesan +=
+        "%0ATotal: Rp " + total.toLocaleString();
 
-      window.open("https://wa.me/62895326652857?text=" + pesan);
+      window.open(
+        "https://wa.me/62895326652857?text=" + pesan
+      );
     }
 
   </script>
 
 </body>
-</html>
 </html>
