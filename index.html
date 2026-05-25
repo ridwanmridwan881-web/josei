@@ -820,6 +820,13 @@
       alert(nama + " berhasil masuk keranjang");
     }
 
+    function hapusItem(index){
+
+      keranjang.splice(index, 1);
+
+      updateCart();
+    }
+
     function updateCart(){
 
       const cartItems = document.getElementById("cart-items");
@@ -830,7 +837,7 @@
 
       let totalHarga = 0;
 
-      keranjang.forEach(item => {
+      keranjang.forEach((item, index) => {
 
         totalHarga += item.harga;
 
@@ -839,6 +846,10 @@
             <h4>${item.nama}</h4>
             <p>Ukuran: ${item.ukuran}</p>
             <p>Rp ${item.harga.toLocaleString()}</p>
+
+            <button onclick="hapusItem(${index})">
+              Hapus
+            </button>
           </div>
         `;
       });
