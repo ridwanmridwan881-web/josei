@@ -134,6 +134,11 @@
       width:100%;
       height:320px;
       object-fit:cover;
+      transition:0.4s;
+    }
+
+    .card:hover img{
+      transform:scale(1.05);
     }
 
     .card-content{
@@ -158,6 +163,31 @@
       margin-bottom:15px;
     }
 
+   .promo-badge{
+      background:#ff7b9c;
+      color:white;
+      display:inline-block;
+      padding:6px 14px;
+      border-radius:20px;
+      font-size:13px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+
+    .harga-asli{
+      text-decoration:line-through;
+      color:#999;
+      font-size:16px;
+      margin-bottom:5px;
+    }
+
+    .promo-text{
+      color:#ff7b9c;
+      font-size:14px;
+      font-weight:bold;
+      margin-bottom:15px;
+    }
+    
     .size-select{
       width:100%;
       padding:10px;
@@ -362,209 +392,311 @@
 
   <section class="produk" id="collection">
 
-    <!-- PRODUK 1 -->
+<!-- PRODUK 1 -->
 
-    <div class="card">
+<div class="card">
 
-      <img src="blouse.png.jpeg" alt="Florence Floral Blouse">
+  <img src="blouse.png.jpeg" alt="Florence Floral Blouse">
 
-      <div class="card-content">
+  <div class="card-content">
 
-        <h3>Florence Floral Blouse</h3>
-
-        <p>
-          Motif floral lembut dengan cutting relaxed fit
-          yang nyaman dipakai sepanjang hari tanpa
-          mengurangi kesan anggun.
-        </p>
-
-        <div class="harga">Rp 150.000</div>
-
-        <select id="ukuran1" class="size-select">
-          <option value="S">Size S</option>
-          <option value="M">Size M</option>
-          <option value="L">Size L</option>
-          <option value="XL">Size XL</option>
-        </select>
-
-        <br><br>
-
-        <button onclick="tambahKeranjang('Florence Floral Blouse',150000,document.getElementById('ukuran1').value)">
-          Beli Sekarang
-        </button>
-
-      </div>
+    <!-- BADGE -->
+    <div class="promo-badge">
+      PROMO
     </div>
+
+    <h3>Florence Floral Blouse</h3>
+
+    <p>
+      Motif floral lembut dengan cutting relaxed fit
+      yang nyaman dipakai sepanjang hari tanpa
+      mengurangi kesan anggun.
+    </p>
+
+    <!-- HARGA ASLI -->
+    <div class="harga-asli">
+      Rp 200.000
+    </div>
+
+    <!-- HARGA PROMO -->
+    <div class="harga">
+      Rp 150.000
+    </div>
+
+    <p class="promo-text">
+      Buy 1 Get 1 Limited Edition 🔥
+    </p>
+
+    <select id="ukuran1" class="size-select">
+      <option value="S">Size S</option>
+      <option value="M">Size M</option>
+      <option value="L">Size L</option>
+      <option value="XL">Size XL</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="tambahKeranjang('Florence Floral Blouse',150000,document.getElementById('ukuran1').value)">
+      Beli Sekarang
+    </button>
+
+  </div>
+</div>
 
     <!-- PRODUK 2 -->
 
-    <div class="card">
+<div class="card">
 
-      <img src="blouse1.png.jpeg" alt="Rose Striped Blouse">
+  <img src="blouse1.png.jpeg" alt="Rose Striped Blouse">
 
-      <div class="card-content">
+  <div class="card-content">
 
-        <h3>Rose Striped Blouse</h3>
-
-        <p>
-          Blouse soft pink dengan detail pita manis,
-          motif garis lembut dan desain feminin
-          untuk daily outfit maupun casual look.
-        </p>
-
-        <div class="harga">Rp 165.000</div>
-
-        <select id="ukuran2" class="size-select">
-          <option value="S">Size S</option>
-          <option value="M">Size M</option>
-          <option value="L">Size L</option>
-          <option value="XL">Size XL</option>
-        </select>
-
-        <br><br>
-
-        <button onclick="tambahKeranjang('Rose Striped Blouse',165000,document.getElementById('ukuran2').value)">
-          Beli Sekarang
-        </button>
-
-      </div>
+    <!-- BADGE -->
+    <div class="promo-badge">
+      PROMO
     </div>
+
+    <h3>Rose Striped Blouse</h3>
+
+    <p>
+      Blouse soft pink dengan detail pita manis,
+      motif garis lembut dan desain feminin
+      untuk daily outfit maupun casual look.
+    </p>
+
+    <!-- HARGA ASLI -->
+    <div class="harga-asli">
+      Rp 215.000
+    </div>
+
+    <!-- HARGA PROMO -->
+    <div class="harga">
+      Rp 165.000
+    </div>
+
+    <p class="promo-text">
+      Buy 1 Get 1 Limited Edition 🔥
+    </p>
+
+    <select id="ukuran2" class="size-select">
+      <option value="S">Size S</option>
+      <option value="M">Size M</option>
+      <option value="L">Size L</option>
+      <option value="XL">Size XL</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="tambahKeranjang('Rose Striped Blouse',165000,document.getElementById('ukuran2').value)">
+      Beli Sekarang
+    </button>
+
+  </div>
+</div>
 
     <!-- PRODUK 3 -->
 
-    <div class="card">
+<div class="card">
 
-      <img src="blouse2.png.jpeg" alt="Ivory Formal Blouse">
+  <img src="blouse2.png.jpeg" alt="Ivory Formal Blouse">
 
-      <div class="card-content">
+  <div class="card-content">
 
-        <h3>Ivory Formal Blouse</h3>
-
-        <p>
-          Blouse elegan dengan detail kontras hitam-putih
-          dan aksen pearl button yang memberikan
-          tampilan classy dan modern.
-        </p>
-
-        <div class="harga">Rp 219.000</div>
-
-        <select id="ukuran3" class="size-select">
-          <option value="S">Size S</option>
-          <option value="M">Size M</option>
-          <option value="L">Size L</option>
-          <option value="XL">Size XL</option>
-        </select>
-
-        <br><br>
-
-        <button onclick="tambahKeranjang('Ivory Formal Blouse',219000,document.getElementById('ukuran3').value)">
-          Beli Sekarang
-        </button>
-
-      </div>
+    <!-- BADGE -->
+    <div class="promo-badge">
+      PROMO
     </div>
+
+    <h3>Ivory Formal Blouse</h3>
+
+    <p>
+      Blouse elegan dengan detail kontras hitam-putih
+      dan aksen pearl button yang memberikan
+      tampilan classy dan modern.
+    </p>
+
+    <!-- HARGA ASLI -->
+    <div class="harga-asli">
+      Rp 270.000
+    </div>
+
+    <!-- HARGA PROMO -->
+    <div class="harga">
+      Rp 219.000
+    </div>
+
+    <p class="promo-text">
+      Buy 1 Get 1 Limited Edition 🔥
+    </p>
+
+    <select id="ukuran3" class="size-select">
+      <option value="S">Size S</option>
+      <option value="M">Size M</option>
+      <option value="L">Size L</option>
+      <option value="XL">Size XL</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="tambahKeranjang('Ivory Formal Blouse',219000,document.getElementById('ukuran3').value)">
+      Beli Sekarang
+    </button>
+
+  </div>
+</div>
 
     <!-- PRODUK 4 -->
 
-    <div class="card">
+<div class="card">
 
-      <img src="blouse3.png.jpeg" alt="Ivory Ribbon Blouse">
+  <img src="blouse3.png.jpeg" alt="Ivory Ribbon Blouse">
 
-      <div class="card-content">
+  <div class="card-content">
 
-        <h3>Ivory Ribbon Blouse</h3>
-
-        <p>
-          Detail ribbon pada bagian leher memberikan
-          sentuhan manis dan classy, cocok dipadukan
-          dengan skirt maupun celana high waist.
-        </p>
-
-        <div class="harga">Rp 150.000</div>
-
-        <select id="ukuran4" class="size-select">
-          <option value="S">Size S</option>
-          <option value="M">Size M</option>
-          <option value="L">Size L</option>
-          <option value="XL">Size XL</option>
-        </select>
-
-        <br><br>
-
-        <button onclick="tambahKeranjang('Ivory Ribbon Blouse',150000,document.getElementById('ukuran4').value)">
-          Beli Sekarang
-        </button>
-
-      </div>
+    <!-- BADGE -->
+    <div class="promo-badge">
+      PROMO
     </div>
+
+    <h3>Ivory Ribbon Blouse</h3>
+
+    <p>
+      Detail ribbon pada bagian leher memberikan
+      sentuhan manis dan classy, cocok dipadukan
+      dengan skirt maupun celana high waist.
+    </p>
+
+    <!-- HARGA ASLI -->
+    <div class="harga-asli">
+      Rp 200.000
+    </div>
+
+    <!-- HARGA PROMO -->
+    <div class="harga">
+      Rp 150.000
+    </div>
+
+    <p class="promo-text">
+      Buy 1 Get 1 Limited Edition 🔥
+    </p>
+
+    <select id="ukuran4" class="size-select">
+      <option value="S">Size S</option>
+      <option value="M">Size M</option>
+      <option value="L">Size L</option>
+      <option value="XL">Size XL</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="tambahKeranjang('Ivory Ribbon Blouse',150000,document.getElementById('ukuran4').value)">
+      Beli Sekarang
+    </button>
+
+  </div>
+</div>
 
     <!-- PRODUK 5 -->
 
-    <div class="card">
+<div class="card">
 
-      <img src="blouse4.png.jpeg" alt="Celestia Peplum Blouse">
+  <img src="blouse4.png.jpeg" alt="Celestia Peplum Blouse">
 
-      <div class="card-content">
+  <div class="card-content">
 
-        <h3>Celestia Peplum Blouse</h3>
-
-        <p>
-          Perpaduan formal dan feminine dengan detail
-          subtle stripe, kerah klasik, dan cutting peplum
-          yang membuat tampilan lebih sophisticated.
-        </p>
-
-        <div class="harga">Rp 190.000</div>
-
-        <select id="ukuran5" class="size-select">
-          <option value="S">Size S</option>
-          <option value="M">Size M</option>
-          <option value="L">Size L</option>
-          <option value="XL">Size XL</option>
-        </select>
-
-        <br><br>
-
-        <button onclick="tambahKeranjang('Celestia Peplum Blouse',190000,document.getElementById('ukuran5').value)">
-          Beli Sekarang
-        </button>
-
-      </div>
+    <!-- BADGE -->
+    <div class="promo-badge">
+      PROMO
     </div>
+
+    <h3>Celestia Peplum Blouse</h3>
+
+    <p>
+      Perpaduan formal dan feminine dengan detail
+      subtle stripe, kerah klasik, dan cutting peplum
+      yang membuat tampilan lebih sophisticated.
+    </p>
+
+    <!-- HARGA ASLI -->
+    <div class="harga-asli">
+      Rp 240.000
+    </div>
+
+    <!-- HARGA PROMO -->
+    <div class="harga">
+      Rp 190.000
+    </div>
+
+    <p class="promo-text">
+      Buy 1 Get 1 Limited Edition 🔥
+    </p>
+
+    <select id="ukuran5" class="size-select">
+      <option value="S">Size S</option>
+      <option value="M">Size M</option>
+      <option value="L">Size L</option>
+      <option value="XL">Size XL</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="tambahKeranjang('Celestia Peplum Blouse',190000,document.getElementById('ukuran5').value)">
+      Beli Sekarang
+    </button>
+
+  </div>
+</div>
 
     <!-- PRODUK 6 -->
 
-    <div class="card">
+<div class="card">
 
-      <img src="blouse5.png.jpeg" alt="Japanese Wrap Style Blouse">
+  <img src="blouse5.png.jpeg" alt="Japanese Wrap Style Blouse">
 
-      <div class="card-content">
+  <div class="card-content">
 
-        <h3>Japanese Wrap Style Blouse</h3>
-
-        <p>
-          Blouse wanita dengan detail tali samping
-          dan lengan flare elegan. Memberikan tampilan
-          feminine, classy, dan nyaman dipakai.
-        </p>
-
-        <div class="harga">Rp 195.000</div>
-
-        <select id="ukuran6" class="size-select">
-          <option value="S">Size S</option>
-          <option value="M">Size M</option>
-          <option value="L">Size L</option>
-          <option value="XL">Size XL</option>
-        </select>
-
-        <br><br>
-
-        <button onclick="tambahKeranjang('Japanese Wrap Style Blouse',195000,document.getElementById('ukuran6').value)">
-          Beli Sekarang
-        </button>
-
-      </div>
+    <!-- BADGE -->
+    <div class="promo-badge">
+      PROMO
     </div>
+
+    <h3>Japanese Wrap Style Blouse</h3>
+
+    <p>
+      Blouse wanita dengan detail tali samping
+      dan lengan flare elegan. Memberikan tampilan
+      feminine, classy, dan nyaman dipakai.
+    </p>
+
+    <!-- HARGA ASLI -->
+    <div class="harga-asli">
+      Rp 255.000
+    </div>
+
+    <!-- HARGA PROMO -->
+    <div class="harga">
+      Rp 195.000
+    </div>
+
+    <p class="promo-text">
+      Buy 1 Get 1 Limited Edition 🔥
+    </p>
+
+    <select id="ukuran6" class="size-select">
+      <option value="S">Size S</option>
+      <option value="M">Size M</option>
+      <option value="L">Size L</option>
+      <option value="XL">Size XL</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="tambahKeranjang('Japanese Wrap Style Blouse',195000,document.getElementById('ukuran6').value)">
+      Beli Sekarang
+    </button>
+
+  </div>
+</div>
 
   </section>
 
@@ -707,3 +839,4 @@
 
 </body>
 </html>
+
