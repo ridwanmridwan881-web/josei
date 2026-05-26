@@ -70,6 +70,67 @@
       color:#fff0f0;
     }
 
+    nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    /* HAMBURGER */
+
+    .menu-toggle{
+      display:none;
+      font-size:28px;
+      color:white;
+      cursor:pointer;
+      position:absolute;
+      left:20px;
+    }
+
+    /* NAV LINKS */
+
+    .nav-links{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      align-items:center;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      nav{
+        position:sticky;
+      }
+
+      .menu-toggle{
+        display:block;
+      }
+
+      .nav-links{
+        display:none;
+        flex-direction:column;
+        background:#d8b8b8;
+        position:absolute;
+        top:60px;
+        left:0;
+        width:100%;
+        padding:20px;
+      }
+
+      .nav-links.active{
+        display:flex;
+      }
+
+      .menu-toggle{
+        position:absolute;
+        left:20px;
+        top:50%;
+        transform:translateY(-50%);
+      }
+    }
+
     /* HERO */
 
     .hero{
@@ -408,10 +469,14 @@
   <!-- NAVBAR -->
 
   <nav>
-    <a href="#home">Home</a>
-    <a href="#collection">Collection</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#collection">Collection</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -806,6 +871,10 @@
   <script>
 
     let keranjang = [];
+
+    function toggleMenu(){
+      document.getElementById("navLinks").classList.toggle("active");
+    }
 
     function tambahKeranjang(nama, harga, ukuran){
 
