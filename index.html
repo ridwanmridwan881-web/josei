@@ -555,7 +555,7 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Florence Floral Blouse',150000,document.getElementById('ukuran1').value)">
+    <button onclick="tambahKeranjang('Florence Floral Blouse', document.getElementById('ukuran1').value)">
       Beli Sekarang
     </button>
 
@@ -606,7 +606,7 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Rose Striped Blouse',165000,document.getElementById('ukuran2').value)">
+    <button onclick="tambahKeranjang('Rose Striped Blouse', document.getElementById('ukuran2').value)">
       Beli Sekarang
     </button>
 
@@ -657,7 +657,7 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Ivory Formal Blouse',219000,document.getElementById('ukuran3').value)">
+    <button onclick="tambahKeranjang('Ivory Formal Blouse', document.getElementById('ukuran3').value)">
       Beli Sekarang
     </button>
 
@@ -708,7 +708,7 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Ivory Ribbon Blouse',150000,document.getElementById('ukuran4').value)">
+    <button onclick="tambahKeranjang('Ivory Ribbon Blouse', document.getElementById('ukuran4').value)">
       Beli Sekarang
     </button>
 
@@ -759,7 +759,7 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Celestia Peplum Blouse',190000,document.getElementById('ukuran5').value)">
+    <button onclick="tambahKeranjang('Celestia Peplum Blouse', document.getElementById('ukuran5').value)">
       Beli Sekarang
     </button>
 
@@ -810,7 +810,7 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Japanese Wrap Style Blouse',195000,document.getElementById('ukuran6').value)">
+    <button onclick="tambahKeranjang('Japanese Wrap Style Blouse', document.getElementById('ukuran6').value)">
       Beli Sekarang
     </button>
 
@@ -876,7 +876,25 @@
       document.getElementById("navLinks").classList.toggle("active");
     }
 
-    function tambahKeranjang(nama, harga, ukuran){
+    function tambahKeranjang(nama, ukuran){
+
+      let harga = 0;
+
+      if(ukuran == "S"){
+        harga = 150000;
+      }
+
+      else if(ukuran == "M"){
+        harga = 170000;
+      }
+
+       else if(ukuran == "L"){
+        harga = 190000;
+      }
+
+      else if(ukuran == "XL"){
+        harga = 210000;
+      }
 
       keranjang.push({
         nama,
@@ -886,7 +904,7 @@
 
       updateCart();
 
-      alert(nama + " berhasil masuk keranjang");
+      alert(nama + " Size " + ukuran + " berhasil masuk keranjang");
     }
 
     function hapusItem(index){
