@@ -11,6 +11,37 @@
 
   <style>
 
+    /* RUNNING TEXT */
+
+    .running-text{
+      width:100%;
+      background:#cfa7a7;
+      overflow:hidden;
+      white-space:nowrap;
+      padding:12px 0;
+      position:sticky;
+      top:0;
+      z-index:200;
+    }
+
+    .running-content{
+      display:inline-block;
+      color:white;
+      font-weight:bold;
+      font-size:15px;
+      animation:jalan 15s linear infinite;
+    }
+
+    @keyframes jalan{
+      0%{
+        transform:translateX(100%);
+      }
+
+      100%{
+        transform:translateX(-100%);
+      }
+    }
+
     *{
       margin:0;
       padding:0;
@@ -72,7 +103,7 @@
 
     nav{
       position:sticky;
-      top:0;
+      top:45px;
       z-index:100;
     }
 
@@ -408,6 +439,79 @@
       margin-top:30px;
     }
 
+    /* TESTIMONI */
+
+    .testimoni{
+      padding:60px 20px;
+      background:#f6efec;
+    }
+
+    .testi-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      max-width:900px;
+      margin:auto;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+      gap:15px;
+    }
+
+    .testi-header h2{
+      color:#b27d7d;
+    }
+
+    .rating-box{
+      background:#ffd6e0;
+      color:#c96f8d;
+      padding:10px 18px;
+      border-radius:20px;
+      font-weight:bold;
+    }
+
+    .review-card{
+      background:#fff4f7;
+      max-width:900px;
+      margin:20px auto;
+      padding:20px;
+      border-radius:25px;
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    .review-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .profile{
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      background:#ffd6e0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+      color:#c07b00;
+    }
+
+    .review-content h3{
+      color:#8d6b6b;
+      margin-bottom:5px;
+    }
+
+    .stars{
+      margin-bottom:10px;
+    }
+
+    .review-content p{
+      color:#777;
+      line-height:1.6;
+    }
+
     /* RESPONSIVE */
 
     @media(max-width:768px){
@@ -434,6 +538,20 @@
 </head>
 
 <body>
+
+  <!-- TEXT BERJALAN -->
+
+  <div class="running-text">
+    <div class="running-content">
+      ✨ FREE ONGKIR SELURUH INDONESIA ✨
+      &nbsp;&nbsp;&nbsp;
+      🔥 BUY 1 GET 1 LIMITED EDITION 🔥
+      &nbsp;&nbsp;&nbsp;
+      💖 JOSEI NEW COLLECTION 2026 💖
+      &nbsp;&nbsp;&nbsp;
+      🌸 FASHION WANITA ELEGAN IMPORT JAPAN 🌸
+    </div>
+  </div>
 
   <!-- CART ICON -->
 
@@ -834,6 +952,126 @@
     </p>
 
   </section>
+
+  <!-- TESTIMONI -->
+
+<section class="testimoni">
+
+  <div class="testi-header">
+    <h2>Ulasan Pembeli</h2>
+
+    <div class="rating-box">
+      ⭐ 4.9 (5 Ulasan Berbintang)
+    </div>
+  </div>
+
+  <!-- REVIEW 1 -->
+
+  <div class="review-card">
+
+    <div class="profile">A</div>
+
+    <div class="review-content">
+
+      <h3>Amelia Putri</h3>
+
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+
+      <p>
+        Bahannya adem dan nyaman dipakai,
+        cocok buat daily outfit maupun hangout.
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- REVIEW 2 -->
+
+  <div class="review-card">
+
+    <div class="profile">B</div>
+
+    <div class="review-content">
+
+      <h3>Bella Citra</h3>
+
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+
+      <p>
+        Jahitannya rapi dan cutting nya bagus,
+        bikin badan keliatan lebih elegant.
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- REVIEW 3 -->
+
+  <div class="review-card">
+
+    <div class="profile">C</div>
+
+    <div class="review-content">
+
+      <h3>Chelsea Olivia</h3>
+
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+
+      <p>
+        Warna dan modelnya persis seperti foto,
+        kualitas premium dan nyaman dipakai.
+      </p>
+
+    </div>
+
+  </div>
+
+    <!-- REVIEW 4 -->
+
+  <div class="review-card">
+
+    <div class="profile">D</div>
+
+    <div class="review-content">
+
+      <h3>mutiara sinder</h3>
+
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+
+      <p>
+        jahitannya rapi banget. Nyaman banget dipakai buat ngantor seharian.
+        Makasih Joseiofficial!
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- REVIEW 5 -->
+
+  <div class="review-card">
+
+    <div class="profile">E</div>
+
+    <div class="review-content">
+
+      <h3>marcela</h3>
+
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+
+      <p>
+        Bahannya bagus banget, adem, dan potongannya pas di badan. 
+        Pengiriman juga cepat. 
+        Highly recommended! Nex bakal order warna lain.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
   <!-- CONTACT -->
 
