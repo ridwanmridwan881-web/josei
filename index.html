@@ -11,6 +11,23 @@
 
   <style>
 
+    /* SEARCH */
+
+    .search-box{
+      text-align:center;
+      padding:20px;
+    }
+
+    .search-box input{
+      width:90%;
+      max-width:500px;
+      padding:12px 20px;
+      border:2px solid #d8b8b8;
+      border-radius:30px;
+      outline:none;
+      font-size:16px;
+    }
+
     /* RUNNING TEXT */
 
     .running-text{
@@ -222,12 +239,27 @@
     }
 
     .card{
+      position:relative;
       background:white;
       width:280px;
       border-radius:20px;
       overflow:hidden;
       box-shadow:0 5px 20px rgba(0,0,0,0.1);
       transition:0.3s;
+    }
+
+    .discount-badge{
+      position:absolute;
+      top:10px;
+      right:10px;
+      background:#ff4f81;
+      color:white;
+      font-size:14px;
+      font-weight:bold;
+      padding:8px 12px;
+      border-radius:50px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.2);
+      z-index:10;
     }
 
     .card:hover{
@@ -550,10 +582,6 @@
       💖 JOSEI NEW COLLECTION 2026 💖
       &nbsp;&nbsp;&nbsp;
       🌸 FASHION WANITA ELEGAN IMPORT JAPAN 🌸
-      &nbsp;&nbsp;&nbsp;
-      ☁️ SOFT MATERIAL & SUPER COMFY ☁️
-      &nbsp;&nbsp;&nbsp;
-      🔥 FAVORITE OUTFIT THIS MONTH 🔥
     </div>
   </div>
 
@@ -629,13 +657,28 @@
     
   </section>
 
+  <!-- SEARCH PRODUK -->
+
+  <div class="search-box">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="🔍 Cari produk..."
+      onkeyup="cariProduk()"
+  >
+  </div>
+
   <!-- PRODUK -->
 
   <section class="produk" id="collection">
 
 <!-- PRODUK 1 -->
 
-<div class="card">
+<div class="card product-card">
+
+  <div class="discount-badge">
+    🔥 BUY 1 GET 1
+  </div>
 
   <img src="blouse.png.jpeg" alt="Florence Floral Blouse">
 
@@ -686,7 +729,11 @@
 
     <!-- PRODUK 2 -->
 
-<div class="card">
+<div class="card product-card">
+
+  <div class="discount-badge">
+    23% OFF
+  </div>
 
   <img src="blouse1.png.jpeg" alt="Rose Striped Blouse">
 
@@ -737,7 +784,11 @@
 
     <!-- PRODUK 3 -->
 
-<div class="card">
+<div class="card product-card">
+
+  <div class="discount-badge">
+    🔥 19% OFF
+  </div>
 
   <img src="blouse2.png.jpeg" alt="Ivory Formal Blouse">
 
@@ -788,7 +839,11 @@
 
     <!-- PRODUK 4 -->
 
-<div class="card">
+<div class="card product-card">
+
+  <div class="discount-badge">
+    25% OFF
+  </div>
 
   <img src="blouse3.png.jpeg" alt="Ivory Ribbon Blouse">
 
@@ -839,7 +894,11 @@
 
     <!-- PRODUK 5 -->
 
-<div class="card">
+<div class="card product-card">
+
+  <div class="discount-badge">
+    DISKON 50K
+  </div>
 
   <img src="blouse4.png.jpeg" alt="Celestia Peplum Blouse">
 
@@ -890,7 +949,11 @@
 
     <!-- PRODUK 6 -->
 
-<div class="card">
+<div class="card product-card">
+
+  <div class="discount-badge">
+    🔥 24% OFF
+  </div>
 
   <img src="blouse5.png.jpeg" alt="Japanese Wrap Style Blouse">
 
@@ -1234,6 +1297,33 @@
       window.open(
         "https://wa.me/62895326652857?text=" + pesan
       );
+    }
+
+    function cariProduk(){
+
+      let input =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+      let produk =
+        document.querySelectorAll(".product-card");
+
+      produk.forEach(card => {
+
+        let nama =
+          card.querySelector("h3")
+          .innerText
+          .toLowerCase();
+
+        if(nama.includes(input)){
+          card.style.display = "block";
+        }else{
+          card.style.display = "none";
+        }
+
+      });
     }
 
   </script>
