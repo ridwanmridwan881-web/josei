@@ -9,6 +9,9 @@
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
   <style>
 
     /* SEARCH */
@@ -544,6 +547,110 @@
       line-height:1.6;
     }
 
+    /* PROMO SLIDER */
+
+    .promo-card{
+      max-width:1200px;
+      margin:60px auto;
+      padding:50px;
+      background:linear-gradient(135deg,#fff8fa,#ffe8f1);
+      border-radius:30px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:40px;
+      box-shadow:0 10px 30px rgba(214,51,132,.12);
+    }
+
+    .promo-text{
+      flex:1;
+    }
+
+    .promo-text h2{
+      font-size:3rem;
+      color:#d63384;
+      margin-bottom:15px;
+    }
+
+    .promo-text p{
+      font-size:1.2rem;
+      color:#666;
+      line-height:1.7;
+      margin-bottom:25px;
+    }
+
+    .promo-btn{
+      display:inline-block;
+      padding:14px 30px;
+      background:#d63384;
+      color:#fff;
+      text-decoration:none;
+      border-radius:50px;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .promo-btn:hover{
+      transform:translateY(-3px);
+    }
+
+    .promo-img img{
+      width:420px;
+      max-width:100%;
+    }
+
+    .slider-dot{
+      margin-top:25px;
+    }
+
+    .slider-dot span{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:#ddd;
+      display:inline-block;
+      margin-right:8px;
+    }
+
+    .slider-dot .active{
+      background:#d63384;
+    }
+
+    @media(max-width:768px){
+      .promo-card{
+        flex-direction:column;
+        text-align:center;
+        padding:30px;
+      }
+
+      .promo-text h2{
+        font-size:2rem;
+      }
+
+      .promo-img img{
+        width:280px;
+      }
+    }
+
+    .swiper{
+      width:100%;
+      padding:20px 0 50px;
+    }
+
+    .swiper-slide{
+      display:flex;
+      justify-content:center;
+    }
+
+    .swiper-pagination-bullet{
+      width:12px;
+      height:12px;
+    }
+
+    .swiper-pagination-bullet-active{
+      background:#d63384;
+    }
+
     /* RESPONSIVE */
 
     @media(max-width:768px){
@@ -667,6 +774,108 @@
       onkeyup="cariProduk()"
   >
   </div>
+
+<!-- SLIDER PROMO -->
+
+<div class="swiper mySwiper">
+
+  <div class="swiper-wrapper">
+
+    <div class="swiper-slide">
+      <div class="promo-card">
+        <div class="promo-text">
+          <h2>Koleksi Terbaru ✨</h2>
+          <p>DOUBLE THE HAPPINESS! 💖 Beli 1 Lebih Untung, Beli 1 Dapat 2! Dapatkan produk favoritmu 
+            di Josei Official dengan promo Buy 1 Get 1 Free. Jangan sampai kehabisan!</p>
+        </div>
+
+        <div class="promo-img">
+          <img src="blouse.png.jpeg">
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="promo-card">
+        <div class="promo-text">
+          <h2>✨ HOT NEW ARRIVAL COLLECTION!</h2>
+          <p>🔥 Nikmati diskon 23% OFF untuk koleksi terbaru dari Josei Official.
+            Saatnya tampil lebih percaya diri dengan fashion favoritmu. 
+            Buruan belanja sebelum promonya berakhir! 💖</p>
+        </div>
+
+        <div class="promo-img">
+          <img src="blouse1.png.jpeg">
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="promo-card">
+        <div class="promo-text">
+          <h2>🔥 19% OFF SALE BEST SELLER FASHION ITEM</h2>
+          <p>💖 Dapatkan produk-produk fashion terlaris pilihan pelanggan dengan diskon spesial 19% OFF hanya di Josei Official.
+            Lengkapi penampilanmu dengan koleksi favorit yang sedang populer. Promo terbatas, jangan sampai kehabisan! ✨</p>
+        </div>
+
+        <div class="promo-img">
+          <img src="blouse2.png.jpeg">
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="promo-card">
+        <div class="promo-text">
+          <h2>☁️ 25% OFF LIMITED EDITION!</h2>
+          <p>✨ Nikmati koleksi eksklusif dengan bahan yang lembut dan super nyaman dipakai sepanjang hari.
+            Tampil lebih stylish dan percaya diri dengan kualitas terbaik dari Josei Official.
+            Stok terbatas, jangan sampai kehabisan! 💖</p>
+        </div>
+
+        <div class="promo-img">
+          <img src="blouse3.png.jpeg">
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="promo-card">
+        <div class="promo-text">
+          <h2>🔥 DISKON 50K BEST FAVORITE OUTFIT THIS MONTH!</h2>
+          <p>💖 Dapatkan outfit favorit pilihan pelanggan bulan ini dengan potongan harga spesial Rp50.000.
+            Saat yang tepat untuk tampil lebih fashionable dengan koleksi terbaik dari Josei Official.
+            Promo terbatas, buruan checkout sebelum kehabisan! ✨</p>
+        </div>
+
+        <div class="promo-img">
+          <img src="blouse4.png.jpeg">
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="promo-card">
+        <div class="promo-text">
+          <h2>🔥 24% OFF HOT DEAL – ELEGANT STYLE LIMITED STOCK 🌸</h2>
+          <p>Tampil lebih anggun dan berkelas dengan koleksi elegan pilihan dari Josei Official.
+            Nikmati diskon spesial 24% OFF untuk fashion item favoritmu dengan stok yang sangat terbatas.
+            Jangan lewatkan kesempatan ini sebelum kehabisan! ✨💖</p>
+        </div>
+
+        <div class="promo-img">
+          <img src="blouse5.png.jpeg">
+        </div>
+      </div>
+    </div>    
+
+  </div>
+
+  <div class="swiper-pagination"></div>
+
+</div>
+
+</section>
 
   <!-- PRODUK -->
 
@@ -1326,6 +1535,24 @@
       });
     }
 
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+  const swiper = new Swiper(".mySwiper", {
+    loop:true,
+
+    autoplay:{
+      delay:3000,
+      disableOnInteraction:false,
+    },
+
+    pagination:{
+      el:".swiper-pagination",
+      clickable:true,
+    },
+  });
   </script>
 
 </body>
