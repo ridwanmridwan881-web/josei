@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <meta property="og:title" content="JOSEI Official - Fashion Wanita Elegan">
+
+  <meta property="og:description"
+  content="Temukan koleksi blouse dan fashion wanita premium dengan desain elegan dan feminine hanya di JOSEI Official.">
+
+  <meta property="og:image"
+  content="https://joseiofficial.vercel.app/logo.png.jpeg">
+
+  <meta property="og:url"
+  content="https://joseiofficial.vercel.app">
+
+  <meta property="og:type"
+  content="website">
+
+  <meta name="twitter:card"
+  content="summary_large_image">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JOSEI Blouse Collection</title>
@@ -398,6 +415,24 @@
       transform:translateY(-5px) scale(1.1);
       background:#ff4f81;
       color:white;
+    }
+
+    /* SHARE BUTTON */
+
+    .share-btn{
+      display:inline-block;
+      background:#d8b8b8;
+      color:white;
+      padding:12px 20px;
+      border-radius:25px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:.3s;
+    }
+
+    .share-btn:hover{
+      background:#b78989;
+      transform:translateY(-3px);
     }
 
     /* FOOTER */
@@ -1369,6 +1404,10 @@
       <i class="fa-brands fa-tiktok"></i>
     </a>
 
+    <a href="#" onclick="bagikanWebsite()" class="share-btn">
+      <i class="fa-solid fa-share-nodes"></i>
+    </a>
+
   </div>
 
   <br>
@@ -1533,6 +1572,38 @@
         }
 
       });
+    }
+
+    function bagikanWebsite(){
+
+      const text =
+    `🌸 Teman-teman udah pada belanja di JOSEI Official!
+
+    Fashion wanita elegan dengan desain modern dan kualitas premium.
+
+    ✨ Koleksi terbaru tersedia
+    💖 Best Seller pilihan pelanggan
+    🔥 Promo spesial setiap bulan
+
+    Cek selengkapnya di sini:
+    https://joseiofficial.vercel.app`;
+
+      if(navigator.share){
+
+        navigator.share({
+          title:"JOSEI Official",
+          text:text,
+          url:"https://joseiofficial.vercel.app"
+        });
+
+      }else{
+
+        window.open(
+          "https://wa.me/?text=" +
+          encodeURIComponent(text)
+        );
+
+      }
     }
 
   </script>
