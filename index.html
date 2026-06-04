@@ -426,6 +426,58 @@
       transform:translateY(-3px);
     }
 
+    /*FAQ*/
+
+    .faq{
+      max-width:1000px;
+      margin:60px auto;
+      padding:20px;
+    }
+
+    .faq h2{
+      text-align:center;
+      color:#b27d7d;
+      margin-bottom:30px;
+      font-size:32px;
+    }
+
+    .faq-item{
+      background:white;
+      border-radius:20px;
+      margin-bottom:15px;
+      overflow:hidden;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .faq-question{
+      width:100%;
+      background:white;
+      color:#8d6b6b;
+      border:none;
+      padding:20px;
+      font-size:18px;
+      font-weight:bold;
+      text-align:left;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+    }
+
+    .faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:0.3s;
+      padding:0 20px;
+      color:#666;
+      line-height:1.7;
+    }
+
+    .faq-answer.show{
+      max-height:200px;
+      padding:0 20px 20px;
+    }
+
     /* FOOTER */
 
     footer{
@@ -1421,6 +1473,68 @@
 
 </section>
 
+  <!-- FAQ -->
+
+  <section class="faq">
+
+    <h2>Pertanyaan Umum (FAQ)</h2>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Apakah produk JOSEI sesuai dengan foto?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        Ya, semua foto produk menggunakan gambar asli dari produk yang kami jual.
+        Perbedaan warna yang sangat kecil mungkin terjadi karena pencahayaan atau pengaturan layar perangkat masing-masing,
+        namun model, bahan, dan detail produk tetap sesuai dengan deskripsi.
+      </div>
+    </div>
+  
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Berapa lama proses pengiriman pesanan?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        Pesanan yang sudah dikonfirmasi biasanya diproses dalam waktu 1x24 jam.
+        Lama pengiriman tergantung lokasi tujuan dan jasa ekspedisi yang digunakan,
+        dengan estimasi sekitar 2–5 hari kerja untuk sebagian besar wilayah Indonesia.
+      </div>
+    </div>
+  
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Apakah tersedia ukuran selain yang tertera?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        Saat ini ukuran yang tersedia mengikuti pilihan pada masing-masing produk.
+        Kami terus menambah variasi ukuran pada koleksi terbaru agar dapat memberikan
+        kenyamanan dan pilihan yang lebih luas bagi pelanggan.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Bagaimana cara melakukan pemesanan?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        Kamu cukup memilih produk dan ukuran yang diinginkan, lalu klik tombol "Beli Sekarang".
+        Produk akan masuk ke keranjang dan dapat langsung di-checkout melalui WhatsApp untuk 
+        memudahkan proses pemesanan dan konfirmasi.
+      </div>
+    </div>
+
+  </section>
+
   <!-- CONTACT -->
 
 <section class="kontak" id="contact">
@@ -1661,6 +1775,22 @@
       clickable:true,
     },
   });
+
+  document.querySelectorAll(".faq-question").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+      const answer = btn.nextElementSibling;
+
+      answer.classList.toggle("show");
+
+      btn.querySelector("span").textContent =
+      answer.classList.contains("show") ? "−" : "+";
+
+    });
+
+  });
+
   </script>
 
 </body>
