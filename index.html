@@ -1840,6 +1840,25 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+
+    import { GoogleAuthProvider, signInWithPopup } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const provider = new GoogleAuthProvider();
+
+    window.loginGoogle = function () {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          alert("Login Google berhasil: " + user.displayName);
+          document.getElementById("loginModal").style.display = "none";
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Login Google gagal: " + error.message);
+        });
+    };
+
   </script>
 
   <!-- LOGIN MODAL -->
