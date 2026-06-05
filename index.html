@@ -552,6 +552,58 @@
       margin-top:30px;
     }
 
+    /* ULASAN */
+
+    .ulasan-form{
+      max-width:900px;
+      margin:60px auto;
+      background:#fff;
+      padding:30px;
+      border-radius:25px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .ulasan-form h2{
+      color:#b27d7d;
+      margin-bottom:20px;
+    }
+
+    .rating-stars{
+      font-size:30px;
+      margin-bottom:20px;
+    }
+
+    .ulasan-form input,
+    .ulasan-form textarea{
+      width:100%;
+      padding:15px;
+      margin-bottom:15px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      font-size:16px;
+    }
+
+    .ulasan-form textarea{
+      resize:none;
+    }
+
+    .ulasan-form button{
+      width:100%;
+      padding:15px;
+      font-size:16px;
+      font-weight:bold;
+    }
+
+    .rating-stars span{
+      font-size:35px;
+      color:#ccc;
+      cursor:pointer;
+    }
+
+    .rating-stars span.active{
+      color:gold;
+    }
+
     /* TESTIMONI */
 
     .testimoni{
@@ -845,6 +897,21 @@
     🛒 <span id="cart-count">0</span>
   </div>
 
+  <div id="userProfile" style="display:none; position:fixed; top:20px; right:100px; background:white; padding:8px 12px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1); z-index:1000; align-items:center; gap:10px;">
+
+    <img id="userPhoto"
+        style="width:35px;height:35px;border-radius:50%;">
+
+    <div>
+      <div id="userName"></div>
+
+      <button onclick="logout()">
+        Logout
+      </button>
+    </div>
+
+  </div>  
+
   <!-- CART -->
 
   <div class="cart" id="cart">
@@ -882,6 +949,7 @@
       <a href="#contact">Contact</a>
       <a href="#" id="loginBtn">Login</a>
     </div>
+
   </nav>
 
   <!-- HERO -->
@@ -1377,17 +1445,61 @@
 
   </section>
 
+  <!-- ULASAN  -->
+
+  <section class="ulasan-form">
+
+      <h2>Tulis Ulasan Anda</h2>
+
+      <div class="rating-stars">
+        <span onclick="setRating(1)">★</span>
+        <span onclick="setRating(2)">★</span>
+        <span onclick="setRating(3)">★</span>
+        <span onclick="setRating(4)">★</span>
+        <span onclick="setRating(5)">★</span>
+      </div>
+
+      <input type="hidden" id="rating" value="0">
+
+      <input
+        type="text"
+        id="namaUlasan"
+        placeholder="Nama Anda">
+
+      <select id="produkUlasan" class="size-select">
+        <option value="Florence Floral Blouse">Florence Floral Blouse</option>
+        <option value="Rose Striped Blouse">Rose Striped Blouse</option>
+        <option value="Ivory Formal Blouse">Ivory Formal Blouse</option>
+        <option value="Ivory Ribbon Blouse">Ivory Ribbon Blouse</option>
+        <option value="Celestia Peplum Blouse">Celestia Peplum Blouse</option>
+        <option value="Japanese Wrap Style Blouse">Japanese Wrap Style Blouse</option>
+      </select>
+
+      <br><br>
+
+      <textarea
+        id="isiUlasan"
+        placeholder="Tulis ulasan..."></textarea>
+
+      <button onclick="kirimUlasan()">
+        Kirim Ulasan Sekarang
+      </button>
+
+    </section>
+
+    <div id="ulasanBaru"></div>
+
   <!-- TESTIMONI -->
 
-<section class="testimoni">
+  <section class="testimoni" id="testimoni">
 
-  <div class="testi-header">
-    <h2>Ulasan Pembeli</h2>
+    <div class="testi-header">
+      <h2>Ulasan Pembeli</h2>
 
-    <div class="rating-box">
-      ⭐ 4.9 (5 Ulasan Berbintang)
+      <div class="rating-box">
+        ⭐ 4.9 (5 Ulasan Berbintang)
+      </div>
     </div>
-  </div>
 
   <!-- REVIEW 1 -->
 
@@ -1494,6 +1606,8 @@
     </div>
 
   </div>
+
+  <div id="ulasanBaru"></div>
 
 </section>
 
@@ -1841,23 +1955,113 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    import { GoogleAuthProvider, signInWithPopup } 
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithRedirect,
+      getRedirectResult,
+      onAuthStateChanged,
+      signOut
+    }
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const provider = new GoogleAuthProvider();
 
     window.loginGoogle = function () {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          const user = result.user;
-          alert("Login Google berhasil: " + user.displayName);
-          document.getElementById("loginModal").style.display = "none";
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Login Google gagal: " + error.message);
-        });
+      signInWithRedirect(auth, provider);
     };
+
+    getRedirectResult(auth)
+      .then((result) => {
+
+        if (result) {
+
+          const user = result.user;
+
+          document.getElementById("userProfile").style.display = "flex";
+          document.getElementById("userName").innerText = user.displayName;
+          document.getElementById("userPhoto").src = user.photoURL;
+
+          document.getElementById("loginModal").style.display = "none";
+        }
+
+      })
+      .catch(console.error);
+
+      onAuthStateChanged(auth, (user) => {
+
+      if (user) {
+
+        document.getElementById("userProfile").style.display = "flex";
+        document.getElementById("userName").innerText = user.displayName;
+        document.getElementById("userPhoto").src = user.photoURL;
+
+      }
+
+    });
+
+    <!-- ulasan -->
+
+    window.kirimUlasan = function(){
+
+      let nama = document.getElementById("namaUlasan").value;
+      let produk = document.getElementById("produkUlasan").value;
+      let isi = document.getElementById("isiUlasan").value;
+      let rating = document.getElementById("rating").value;
+
+      if(nama === "" || isi === ""){
+        alert("Silakan isi nama dan ulasan terlebih dahulu!");
+        return;
+      }
+
+      let hurufAwal = nama.charAt(0).toUpperCase();
+
+      document.getElementById("ulasanBaru").innerHTML += `
+        <div class="review-card">
+
+          <div class="profile">${hurufAwal}</div>
+
+          <div class="review-content">
+
+            <h3>${nama}</h3>
+
+            <div class="stars">${"⭐".repeat(rating)}</div>
+
+            <p>
+              <b>${produk}</b><br>
+              ${isi}
+            </p>
+
+          </div>
+
+        </div>
+      `;
+
+      document.getElementById("namaUlasan").value = "";
+      document.getElementById("produkUlasan").value = "";
+      document.getElementById("isiUlasan").value = "";
+
+      alert("Terima kasih atas ulasannya ❤️");
+    }
+
+    window.setRating = function(rating){
+
+      document.getElementById("rating").value = rating;
+
+      const stars =
+      document.querySelectorAll(".rating-stars span");
+
+      stars.forEach((star,index)=>{
+
+        if(index < rating){
+          star.classList.add("active");
+        }else{
+          star.classList.remove("active");
+        }
+
+      });
+
+    }
 
   </script>
 
@@ -1874,6 +2078,105 @@
       Tutup
     </button>
   </div>
+
+  <script>
+
+    function setRating(rating){
+
+      document.getElementById("rating").value = rating;
+
+      const stars =
+        document.querySelectorAll(".rating-stars span");
+
+      stars.forEach((star,index)=>{
+
+        if(index < rating){
+          star.classList.add("active");
+        }else{
+          star.classList.remove("active");
+        }
+
+      });
+
+    }
+
+    function kirimUlasan(){
+
+      const nama =
+        document.getElementById("namaUlasan").value;
+
+      const produk =
+        document.getElementById("produkUlasan").value;
+
+      const isi =
+        document.getElementById("isiUlasan").value;
+
+      const rating =
+        document.getElementById("rating").value;
+
+      if(nama === "" || isi === ""){
+        alert("Isi nama dan ulasan terlebih dahulu!");
+        return;
+      }
+
+      if(rating == 0){
+        alert("Pilih rating bintang terlebih dahulu!");
+        return;
+      }
+
+      const hurufAwal =
+        nama.charAt(0).toUpperCase();
+
+      document.getElementById("ulasanBaru").innerHTML += `
+
+        <div class="review-card">
+
+          <div class="profile">${hurufAwal}</div>
+
+          <div class="review-content">
+
+            <h3>${nama}</h3>
+
+            <div class="stars">
+              ${"⭐".repeat(rating)}
+            </div>
+
+            <p>
+              <b>${produk}</b><br>
+              ${isi}
+            </p>
+
+          </div>
+
+        </div>
+
+      `;
+
+      document.getElementById("namaUlasan").value = "";
+      document.getElementById("isiUlasan").value = "";
+      document.getElementById("rating").value = 0;
+
+      document
+        .querySelectorAll(".rating-stars span")
+        .forEach(star => star.classList.remove("active"));
+
+      alert("Terima kasih atas ulasannya ❤️");
+    }
+
+    window.logout = function () {
+
+      signOut(auth)
+        .then(() => {
+
+          document.getElementById("userProfile").style.display = "none";
+
+          alert("Logout berhasil");
+
+        });
+
+    };
+
+  </script>
 
 </body>
 </html>
