@@ -492,33 +492,34 @@
 
     .cart-icon{
       position:fixed;
-      top:20px;
+      bottom:20px;
       right:20px;
       background:#c98c8c;
       color:white;
       padding:12px 18px;
       border-radius:30px;
       cursor:pointer;
-      z-index:1000;
+      z-index:10000;
       font-weight:bold;
     }
 
     .cart{
       position:fixed;
-      right:-400px;
-      top:0;
-      width:350px;
-      height:100%;
-      background:white;
-      box-shadow:-5px 0 20px rgba(0,0,0,0.2);
-      padding:20px;
-      transition:0.4s;
+      bottom:-100%;
+      left:0;
+      width:100%;
+      height:300px;
+      background:#fff;
+      padding:25px;
       overflow-y:auto;
-      z-index:999;
+      transition:.4s;
+      z-index:9999;
+      box-shadow:0 -5px 20px rgba(0,0,0,.15);
+      border-radius:20px 20px 0 0;
     }
 
     .cart.active{
-      right:0;
+      bottom:0;
     }
 
     .cart h2{
@@ -959,6 +960,45 @@
       margin-top:20px;
     }
 
+    /*KERANJANG*/
+
+    .cart-product{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      background:white;
+      padding:15px;
+      margin-bottom:15px;
+      border-radius:15px;
+    }
+
+    .cart-product img{
+      width:90px;
+      height:90px;
+      object-fit:cover;
+      border-radius:12px;
+    }
+
+    .cart-info{
+      flex:1;
+    }
+
+    .qty-box{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .qty-box button{
+      width:35px;
+      height:35px;
+      border:none;
+      border-radius:8px;
+      background:#ff4081;
+      color:white;
+      cursor:pointer;
+    }
+
   </style>
 </head>
 
@@ -1003,16 +1043,18 @@
 
   <div class="cart" id="cart">
 
-    <h2>Keranjang</h2>
+    <h2>Keranjang Belanja</h2>
 
     <div id="cart-items"></div>
 
-    <h3 id="total">Total: Rp 0</h3>
+    <hr><br>
+
+    <h3 id="total">Rp 0</h3>
 
     <br>
 
     <button onclick="checkoutWA()">
-      Checkout WhatsApp
+      Buat Pesanan
     </button>
 
   </div>
@@ -1232,9 +1274,14 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Florence Floral Blouse',150000,document.getElementById('ukuran1').value)">
-      Beli Sekarang
-    </button>
+    <button onclick="tambahKeranjang(
+    'Florence Floral Blouse',
+    150000,
+    document.getElementById('ukuran1').value,
+  'blouse.png.jpeg'
+)">
+Beli Sekarang
+</button>
 
   </div>
 </div>
@@ -1287,7 +1334,12 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Rose Striped Blouse',165000,document.getElementById('ukuran2').value)">
+    <button onclick="tambahKeranjang(
+    'Rose Striped Blouse',
+    165000,
+    document.getElementById('ukuran2').value,
+    'blouse1.png.jpeg'
+)">
       Beli Sekarang
     </button>
 
@@ -1342,7 +1394,12 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Ivory Formal Blouse',219000,document.getElementById('ukuran3').value)">
+    <button onclick="tambahKeranjang(
+      'Ivory Formal Blouse',
+      219000,
+      document.getElementById('ukuran3').value,
+      'blouse2.png.jpeg'
+    )">
       Beli Sekarang
     </button>
 
@@ -1397,7 +1454,12 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Ivory Ribbon Blouse',150000,document.getElementById('ukuran4').value)">
+    <button onclick="tambahKeranjang(
+      'Ivory Ribbon Blouse',
+      150000,
+      document.getElementById('ukuran4').value,
+      'blouse3.png.jpeg'
+    )">
       Beli Sekarang
     </button>
 
@@ -1452,7 +1514,12 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Celestia Peplum Blouse',190000,document.getElementById('ukuran5').value)">
+    <button onclick="tambahKeranjang(
+      'Celestia Peplum Blouse',
+      190000,
+      document.getElementById('ukuran5').value,
+      'blouse4.png.jpeg'
+    )">
       Beli Sekarang
     </button>
 
@@ -1507,7 +1574,12 @@
 
     <br><br>
 
-    <button onclick="tambahKeranjang('Japanese Wrap Style Blouse',195000,document.getElementById('ukuran6').value)">
+    <button onclick="tambahKeranjang(
+      'Japanese Wrap Style Blouse',
+      195000,
+      document.getElementById('ukuran6').value,
+      'blouse5.png.jpeg'
+    )">
       Beli Sekarang
     </button>
 
@@ -1810,31 +1882,27 @@
       document.getElementById("navLinks").classList.toggle("active");
     }
 
-    function tambahKeranjang(nama, hargaDasar, ukuran){
+    function tambahKeranjang(nama, hargaDasar, ukuran, foto){
 
       let tambahan = 0;
 
-      if(ukuran == "M"){
-        tambahan = 10000;
-      }
-
-      else if(ukuran == "L"){
-        tambahan = 20000;
-      }
-
-      else if(ukuran == "XL"){
-        tambahan = 30000;
-      }
-
-      let hargaFinal = hargaDasar + tambahan;
+      if(ukuran=="M") tambahan=10000;
+      else if(ukuran=="L") tambahan=20000;
+      else if(ukuran=="XL") tambahan=30000;
 
       keranjang.push({
-        nama,
-        harga: hargaFinal,
-        ukuran
+        nama:nama,
+        harga:hargaDasar+tambahan,
+        ukuran:ukuran,
+        foto:foto,
+        jumlah:1
       });
 
       updateCart();
+
+      document
+        .getElementById("cart")
+        .classList.add("active");
 
       alert(
         nama +
@@ -1853,35 +1921,76 @@
 
     function updateCart(){
 
-      const cartItems = document.getElementById("cart-items");
-      const cartCount = document.getElementById("cart-count");
-      const total = document.getElementById("total");
+      const cartItems =
+      document.getElementById("cart-items");
 
-      cartItems.innerHTML = "";
+      const cartCount =
+      document.getElementById("cart-count");
 
-      let totalHarga = 0;
+      const totalEl =
+      document.getElementById("total");
 
-      keranjang.forEach((item, index) => {
+      cartItems.innerHTML="";
 
-        totalHarga += item.harga;
+      let total=0;
+
+      keranjang.forEach((item,index)=>{
+
+        total += item.harga * item.jumlah;
 
         cartItems.innerHTML += `
-          <div class="cart-item">
+
+        <div class="cart-product">
+
+          <img src="${item.foto}">
+
+          <div class="cart-info">
+
             <h4>${item.nama}</h4>
-            <p>Ukuran: ${item.ukuran}</p>
+
+            <p>Size ${item.ukuran}</p>
+
             <p>Rp ${item.harga.toLocaleString()}</p>
 
-            <button onclick="hapusItem(${index})">
-              Hapus
-            </button>
           </div>
+
+          <div class="qty-box">
+
+            <button onclick="kurang(${index})">-</button>
+
+            <span>${item.jumlah}</span>
+
+            <button onclick="tambah(${index})">+</button>
+
+            <button onclick="hapusItem(${index})">🗑️</button>
+
+          </div>
+
+        </div>
+
         `;
       });
 
       cartCount.innerText = keranjang.length;
 
-      total.innerText =
-        "Total: Rp " + totalHarga.toLocaleString();
+      totalEl.innerText =
+      "Rp " + total.toLocaleString();
+    }
+
+    function tambah(index){
+      keranjang[index].jumlah++;
+      updateCart();
+    }
+
+    function kurang(index){
+
+      if(keranjang[index].jumlah>1){
+        keranjang[index].jumlah--;
+      }else{
+        keranjang.splice(index,1);
+      }
+
+      updateCart();
     }
 
     function toggleCart(){
