@@ -797,6 +797,29 @@
       }
     }
 
+    /* LOGIN MODAL */
+
+    #loginModal{
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      background:white;
+      padding:20px;
+      border-radius:15px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      z-index:2000;
+      width:300px;
+    }
+
+    #loginModal input{
+      width:100%;
+      margin:10px 0;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:8px;
+    }
+
   </style>
 </head>
 
@@ -857,6 +880,7 @@
       <a href="#collection">Collection</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <a href="#" id="loginBtn">Login</a>
     </div>
   </nav>
 
@@ -1791,7 +1815,46 @@
 
   });
 
+  document.getElementById("loginBtn").onclick = function(e){
+    e.preventDefault();
+    document.getElementById("loginModal").style.display = "block";
+  };
+
   </script>
+
+  <!-- firebase -->
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAzaTYDbCLllLWQo5suCI7Fjn5mRbXrJ64",
+      authDomain: "josei-4ac31.firebaseapp.com",
+      projectId: "josei-4ac31",
+      storageBucket: "josei-4ac31.firebasestorage.app",
+      messagingSenderId: "1050753951384",
+      appId: "1:1050753951384:web:f581cde116ab5ae438d2ed",
+      measurementId: "G-9L727Q2MBM"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+  </script>
+
+  <!-- LOGIN MODAL -->
+
+  <div id="loginModal" style="display:none;">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="daftar()">Daftar</button>
+    <button onclick="loginEmail()">Masuk</button>
+    <button onclick="loginGoogle()">Login Google</button>
+    <button onclick="document.getElementById('loginModal').style.display='none'">
+      Tutup
+    </button>
+  </div>
 
 </body>
 </html>
