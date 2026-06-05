@@ -897,22 +897,20 @@
     🛒 <span id="cart-count">0</span>
   </div>
 
-  <div id="userProfile" style="display:flex; position:fixed; bottom:140px; right:20px; background:white; padding:8px 12px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1); z-index:1000; align-items:center; gap:10px;">
+  <div id="userProfile" style="display:none; position:fixed; top:20px; right:100px; background:white; padding:8px 12px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1); z-index:1000; align-items:center; gap:10px;">
 
-    <img
-      id="userPhoto"
-      src="https://ui-avatars.com/api/?name=Guest"
-      style="width:35px;height:35px;border-radius:50%;">
+    <img id="userPhoto"
+        style="width:35px;height:35px;border-radius:50%;">
 
     <div>
-      <div id="userName">Guest</div>
+      <div id="userName"></div>
 
       <button onclick="logout()">
-      L ogout
+        Logout
       </button>
     </div>
 
-  </div>
+  </div>  
 
   <!-- CART -->
 
@@ -1993,19 +1991,9 @@
 
       if (user) {
 
-        document.getElementById("userName").innerText =
-        user.displayName;
-
-        document.getElementById("userPhoto").src =
-        user.photoURL;
-
-      } else {
-
-        document.getElementById("userName").innerText =
-        "Guest";
-
-        document.getElementById("userPhoto").src =
-        "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+        document.getElementById("userProfile").style.display = "flex";
+        document.getElementById("userName").innerText = user.displayName;
+        document.getElementById("userPhoto").src = user.photoURL;
 
       }
 
