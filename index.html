@@ -193,14 +193,30 @@
     /* HERO */
 
     .hero{
-      text-align:center;
-      padding:70px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:60px;
+      max-width:1200px;
+      margin:auto;
+      padding:80px 40px;
+    }
+
+    .hero-left{
+      flex:1;
+      text-align:left;
+    }
+
+    .hero-right{
+      flex:1;
+      display:flex;
+      justify-content:center;
     }
 
     .logo{
-      width:160px;
-      margin-bottom:20px;
-      border-radius:20px;
+      width:350px;
+      max-width:100%;
+      border-radius:25px;
     }
 
     .poster-promo{
@@ -211,16 +227,49 @@
       box-shadow:0 5px 20px rgba(0,0,0,0.1);
     }
 
+    .poster-container{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      width:100%;
+    }
+
+    .poster-promo{
+      display:block;
+      margin:30px auto;
+    }
+
     .hero h2{
-      font-size:40px;
-      margin-bottom:15px;
+      font-size:55px;
+      margin-bottom:20px;
       color:#b78989;
     }
 
     .hero p{
-      max-width:700px;
-      margin:auto;
       line-height:1.8;
+      max-width:600px;
+    }
+
+    @media(max-width:768px){
+
+      .hero{
+        flex-direction:column-reverse;
+        text-align:center;
+        padding:50px 20px;
+        gap:30px;
+      }
+
+      .hero-left{
+        text-align:center;
+      }
+
+      .hero h2{
+        font-size:32px;
+      }
+
+      .logo{
+       width:220px;
+      }
     }
 
     /* BUTTON */
@@ -310,7 +359,7 @@
       margin-bottom:15px;
     }
 
-   .promo-badge{
+    .promo-badge{
       background:#ff7b9c;
       color:white;
       display:inline-block;
@@ -352,6 +401,7 @@
     }
 
     .tentang h2{
+      font-size:40px;
       margin-bottom:20px;
       color:#b27d7d;
     }
@@ -360,6 +410,12 @@
       max-width:700px;
       margin:auto;
       line-height:1.8;
+    }
+
+    @media(max-width:768px){
+      .tentang h2{
+        font-size:30px;
+      }
     }
 
     /* CONTACT */
@@ -1085,29 +1141,40 @@
 
   <section class="hero" id="home">
 
-    <img src="logo.png.jpeg" alt="Logo JOSEI" class="logo">
+    <div class="hero-left">
 
-    <h2>Selamat Datang di JOSEI</h2>
+      <h2>Selamat Datang di JOSEI</h2>
 
-    <p>
-      JOSEI adalah toko fashion wanita yang menghadirkan
-      blouse elegan import dari Jepang dengan warna soft feminine
-      dan desain modern.
-      Cocok untuk daily outfit, kantor, hangout,
-      hingga acara spesial.
-    </p>
+      <p>
+        JOSEI adalah toko fashion wanita yang menghadirkan
+        blouse elegan import dari Jepang dengan warna soft feminine
+        dan desain modern. Cocok untuk daily outfit, kantor,
+        hangout, hingga acara spesial.
+      </p>
 
-    <br>
+      <br>
 
-    <button onclick="document.getElementById('collection').scrollIntoView();">
-      Belanja Sekarang
-    </button>
+      <button onclick="document.getElementById('collection').scrollIntoView();">
+        Belanja Sekarang
+      </button>
 
-    <br><br>
+    </div>
 
-    <img src="blouse6.png.jpeg" alt="Poster Promo JOSEI" class="poster-promo">
-    
+    <div class="hero-right">
+
+      <img src="logo.png.jpeg"
+          alt="Logo JOSEI"
+          class="logo">
+
+    </div>
+
   </section>
+
+  <!-- poster promo -->
+
+  <div class="poster-container">
+    <img src="blouse6.png.jpeg" alt="Poster Promo JOSEI" class="poster-promo">
+  </div>
 
   <!-- SEARCH PRODUK -->
 
