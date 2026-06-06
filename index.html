@@ -1018,6 +1018,59 @@
       margin-top:20px;
     }
 
+    /* PROFILE */
+
+    .profile-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.5);
+      z-index:99999;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .profile-card-box{
+      width:800px;
+      max-width:90%;
+      background:white;
+      border-radius:30px;
+      overflow:hidden;
+      text-align:center;
+      position:relative;
+    }
+
+    .profile-cover{
+      height:180px;
+      background:linear-gradient(135deg,#ff4f81,#ff9a7a);
+    }
+
+    .profile-photo-modal{
+      width:140px;
+      height:140px;
+      border-radius:50%;
+      border:6px solid white;
+      margin-top:-70px;
+      object-fit:cover;
+    }
+
+    .profile-info{
+      padding:20px 30px 40px;
+    }
+
+    .profile-info h2{
+      color:#8d6b6b;
+      margin:15px 0;
+    }
+
+    .close-profile{
+      position:absolute;
+      top:15px;
+      right:20px;
+      cursor:pointer;
+      font-size:24px;
+    }
+
     /*KERANJANG*/
 
     .cart-product{
@@ -1135,6 +1188,9 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="#" id="loginBtn">Login</a>
+      <a href="#" id="profileBtn" style="display:none;">
+        Profile
+      </a>
     </div>
 
   </nav>
@@ -2267,6 +2323,17 @@ Beli Sekarang
         document.getElementById("userName").innerText = user.displayName;
         document.getElementById("userPhoto").src = user.photoURL;
 
+        document.getElementById("profileBtn").style.display = "inline-block";
+
+        document.getElementById("profilePhotoModal").src =
+          user.photoURL;
+
+        document.getElementById("profileNameModal").innerText =
+          user.displayName;
+
+        document.getElementById("profileEmailModal").innerText =
+          user.email;
+
       }
 
     });
@@ -2502,6 +2569,59 @@ Beli Sekarang
 
     }
   </script>
+  
+  /*PROFILE*/
+
+  <div id="profileModal" class="profile-modal">
+
+    <div class="profile-card-box">
+
+      <span class="close-profile"
+        onclick="closeProfile()">✕</span>
+
+      <div class="profile-cover"></div>
+
+      <img id="profilePhotoModal" class="profile-photo-modal">
+
+      <div class="profile-info">
+
+        <h2 id="profileNameModal"></h2>
+
+        <p id="profileEmailModal"></p>
+
+        <button onclick="logout()">
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+    <script>
+
+      document
+      .getElementById("profileBtn")
+      .addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        document
+        .getElementById("profileModal")
+        .style.display = "flex";
+
+      });
+
+      function closeProfile(){
+
+        document
+        .getElementById("profileModal")
+        .style.display = "none";
+
+      }
+
+    </script>
 
 </body>
 </html>
