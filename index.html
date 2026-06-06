@@ -1017,50 +1017,6 @@
       text-align:center;
       margin-top:20px;
     }
-    
-    /* PROFILE MENU */
-
-    .profile-menu{
-      position:fixed;
-      top:0;
-      right:-350px;
-      width:350px;
-      height:100vh;
-      background:white;
-      z-index:9999;
-      transition:.3s;
-    }
-
-    .profile-menu.active{
-      right:0;
-    }
-
-    .profile-header{
-      background:#d8b8b8;
-      color:white;
-      text-align:center;
-      padding:30px;
-    }
-
-    .profile-header img{
-      width:80px;
-      height:80px;
-      border-radius:50%;
-    }
-
-    .profile-item{
-      padding:18px;
-      border-bottom:1px solid #eee;
-      cursor:pointer;
-    }
-
-    #profileLoginBtn{
-      margin-top:10px;
-      padding:10px 20px;
-      border:none;
-      border-radius:20px;
-      cursor:pointer;
-    }
 
     /*KERANJANG*/
 
@@ -1124,7 +1080,22 @@
 
   <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
-  </div> 
+  </div>
+
+  <div id="userProfile" style="display:none; position:fixed; top:20px; right:100px; background:white; padding:8px 12px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1); z-index:1000; align-items:center; gap:10px;">
+
+    <img id="userPhoto"
+        style="width:35px;height:35px;border-radius:50%;">
+
+    <div>
+      <div id="userName"></div>
+
+      <button onclick="logout()">
+        Logout
+      </button>
+    </div>
+
+  </div>  
 
   <!-- CART -->
 
@@ -1163,9 +1134,7 @@
       <a href="#collection">Collection</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="#" onclick="toggleProfileMenu();return false;">
-        👤 Profile
-      </a>
+      <a href="#" id="loginBtn">Login</a>
     </div>
 
   </nav>
@@ -2232,6 +2201,11 @@ Beli Sekarang
 
   });
 
+  document.getElementById("loginBtn").onclick = function(e){
+    e.preventDefault();
+    document.getElementById("loginModal").style.display = "block";
+  };
+
   </script>
 
   <!-- firebase -->
@@ -2275,11 +2249,9 @@ Beli Sekarang
 
           const user = result.user;
 
-          document.getElementById("profileName").innerText =
-          user.displayName;
-
-          document.getElementById("profilePhoto").src =
-          user.photoURL;
+          document.getElementById("userProfile").style.display = "flex";
+          document.getElementById("userName").innerText = user.displayName;
+          document.getElementById("userPhoto").src = user.photoURL;
 
           document.getElementById("loginModal").style.display = "none";
         }
@@ -2291,14 +2263,9 @@ Beli Sekarang
 
       if (user) {
 
-        document.getElementById("profileName").innerText =
-        user.displayName;
-
-        document.getElementById("profilePhoto").src =
-        user.photoURL;
-
-        document.getElementById("profileLoginBtn").style.display =
-        "none";
+        document.getElementById("userProfile").style.display = "flex";
+        document.getElementById("userName").innerText = user.displayName;
+        document.getElementById("userPhoto").src = user.photoURL;
 
       }
 
@@ -2511,9 +2478,8 @@ Beli Sekarang
       signOut(auth)
         .then(() => {
 
-          document.getElementById("profileName").innerText =
-            "Belum Login";
-          document.getElementById("profilePhoto").src = "";
+          document.getElementById("userProfile").style.display = "none";
+
           alert("Logout berhasil");
 
         });
@@ -2535,47 +2501,6 @@ Beli Sekarang
       }
 
     }
-  </script>
-
-  <div id="profileMenu" class="profile-menu">
-
-    <div class="profile-header">
-
-      <img id="profilePhoto">
-
-      <h3 id="profileName">
-        Belum Login
-      </h3>
-
-      <button id="profileLoginBtn" type="button"
-        onclick="loginGoogle()">
-        Login
-      </button>
-
-    </div>
-
-    <div class="profile-item">📦 Pesanan Saya</div>
-
-    <div class="profile-item">❤️ Wishlist</div>
-
-    <div class="profile-item">🎫 Voucher</div>
-
-    <div class="profile-item">🛒 Keranjang</div>
-
-    <div class="profile-item">⚙️ Pengaturan</div>
-
-    <div class="profile-item" onclick="logout()">
-      🚪 Logout
-    </div>
-
-  </div>
-  
-  <script>
-    function toggleProfileMenu(){
-      document.getElementById("profileMenu")
-          .classList.toggle("active");
-    }
-
   </script>
 
 </body>
