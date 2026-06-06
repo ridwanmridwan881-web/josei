@@ -1017,58 +1017,49 @@
       text-align:center;
       margin-top:20px;
     }
+    
+    /* PROFILE MENU */
 
-    /* PROFILE */
-
-    .profile-modal{
-      display:none;
+    .profile-menu{
       position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.5);
-      z-index:99999;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .profile-card-box{
-      width:800px;
-      max-width:90%;
+      top:0;
+      right:-350px;
+      width:350px;
+      height:100vh;
       background:white;
-      border-radius:30px;
-      overflow:hidden;
+      z-index:9999;
+      transition:.3s;
+    }
+
+    .profile-menu.active{
+      right:0;
+    }
+
+    .profile-header{
+      background:#d8b8b8;
+      color:white;
       text-align:center;
-      position:relative;
+      padding:30px;
     }
 
-    .profile-cover{
-      height:180px;
-      background:linear-gradient(135deg,#ff4f81,#ff9a7a);
-    }
-
-    .profile-photo-modal{
-      width:140px;
-      height:140px;
+    .profile-header img{
+      width:80px;
+      height:80px;
       border-radius:50%;
-      border:6px solid white;
-      margin-top:-70px;
-      object-fit:cover;
     }
 
-    .profile-info{
-      padding:20px 30px 40px;
-    }
-
-    .profile-info h2{
-      color:#8d6b6b;
-      margin:15px 0;
-    }
-
-    .close-profile{
-      position:absolute;
-      top:15px;
-      right:20px;
+    .profile-item{
+      padding:18px;
+      border-bottom:1px solid #eee;
       cursor:pointer;
-      font-size:24px;
+    }
+
+    #profileLoginBtn{
+      margin-top:10px;
+      padding:10px 20px;
+      border:none;
+      border-radius:20px;
+      cursor:pointer;
     }
 
     /*KERANJANG*/
@@ -1133,22 +1124,7 @@
 
   <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
-  </div>
-
-  <div id="userProfile" style="display:none; position:fixed; top:20px; right:100px; background:white; padding:8px 12px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1); z-index:1000; align-items:center; gap:10px;">
-
-    <img id="userPhoto"
-        style="width:35px;height:35px;border-radius:50%;">
-
-    <div>
-      <div id="userName"></div>
-
-      <button onclick="logout()">
-        Logout
-      </button>
-    </div>
-
-  </div>  
+  </div> 
 
   <!-- CART -->
 
@@ -1187,9 +1163,8 @@
       <a href="#collection">Collection</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="#" id="loginBtn">Login</a>
-      <a href="#" id="profileBtn" style="display:none;">
-        Profile
+      <a href="#" onclick="toggleProfileMenu();return false;">
+        👤 Profile
       </a>
     </div>
 
@@ -2257,11 +2232,6 @@ Beli Sekarang
 
   });
 
-  document.getElementById("loginBtn").onclick = function(e){
-    e.preventDefault();
-    document.getElementById("loginModal").style.display = "block";
-  };
-
   </script>
 
   <!-- firebase -->
@@ -2305,9 +2275,11 @@ Beli Sekarang
 
           const user = result.user;
 
-          document.getElementById("userProfile").style.display = "flex";
-          document.getElementById("userName").innerText = user.displayName;
-          document.getElementById("userPhoto").src = user.photoURL;
+          document.getElementById("profileName").innerText =
+          user.displayName;
+
+          document.getElementById("profilePhoto").src =
+          user.photoURL;
 
           document.getElementById("loginModal").style.display = "none";
         }
@@ -2319,20 +2291,14 @@ Beli Sekarang
 
       if (user) {
 
-        document.getElementById("userProfile").style.display = "flex";
-        document.getElementById("userName").innerText = user.displayName;
-        document.getElementById("userPhoto").src = user.photoURL;
+        document.getElementById("profileName").innerText =
+        user.displayName;
 
-        document.getElementById("profileBtn").style.display = "inline-block";
+        document.getElementById("profilePhoto").src =
+        user.photoURL;
 
-        document.getElementById("profilePhotoModal").src =
-          user.photoURL;
-
-        document.getElementById("profileNameModal").innerText =
-          user.displayName;
-
-        document.getElementById("profileEmailModal").innerText =
-          user.email;
+        document.getElementById("profileLoginBtn").style.display =
+        "none";
 
       }
 
@@ -2545,8 +2511,9 @@ Beli Sekarang
       signOut(auth)
         .then(() => {
 
-          document.getElementById("userProfile").style.display = "none";
-
+          document.getElementById("profileName").innerText =
+            "Belum Login";
+          document.getElementById("profilePhoto").src = "";
           alert("Logout berhasil");
 
         });
@@ -2569,59 +2536,47 @@ Beli Sekarang
 
     }
   </script>
-  
-  /*PROFILE*/
 
-  <div id="profileModal" class="profile-modal">
+  <div id="profileMenu" class="profile-menu">
 
-    <div class="profile-card-box">
+    <div class="profile-header">
 
-      <span class="close-profile"
-        onclick="closeProfile()">✕</span>
+      <img id="profilePhoto">
 
-      <div class="profile-cover"></div>
+      <h3 id="profileName">
+        Belum Login
+      </h3>
 
-      <img id="profilePhotoModal" class="profile-photo-modal">
-
-      <div class="profile-info">
-
-        <h2 id="profileNameModal"></h2>
-
-        <p id="profileEmailModal"></p>
-
-        <button onclick="logout()">
-          Logout
-        </button>
-
-      </div>
+      <button id="profileLoginBtn" type="button"
+        onclick="loginGoogle()">
+        Login
+      </button>
 
     </div>
 
+    <div class="profile-item">📦 Pesanan Saya</div>
+
+    <div class="profile-item">❤️ Wishlist</div>
+
+    <div class="profile-item">🎫 Voucher</div>
+
+    <div class="profile-item">🛒 Keranjang</div>
+
+    <div class="profile-item">⚙️ Pengaturan</div>
+
+    <div class="profile-item" onclick="logout()">
+      🚪 Logout
+    </div>
+
   </div>
+  
+  <script>
+    function toggleProfileMenu(){
+      document.getElementById("profileMenu")
+          .classList.toggle("active");
+    }
 
-    <script>
-
-      document
-      .getElementById("profileBtn")
-      .addEventListener("click", function(e){
-
-        e.preventDefault();
-
-        document
-        .getElementById("profileModal")
-        .style.display = "flex";
-
-      });
-
-      function closeProfile(){
-
-        document
-        .getElementById("profileModal")
-        .style.display = "none";
-
-      }
-
-    </script>
+  </script>
 
 </body>
 </html>
